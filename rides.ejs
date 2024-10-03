@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMUSEMENT PARK - Rides</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .rides-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .rides-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .rides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .ride-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .ride-card:hover {
+            transform: translateY(-5px);
+        }
+        .ride-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .ride-info {
+            padding: 1rem;
+        }
+        .ride-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .ride-category {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .ride-price {
+            font-weight: bold;
+            color: #ff6600;
+        }
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #ff6600;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background-color: #ff8533;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="rides-container">
+        <div class="rides-header">
+            <h1>Our Exciting Rides</h1>
+            <p>Choose from our wide variety of thrilling attractions!</p>
+        </div>
+
+        <div class="rides-grid">
+            <% rides.forEach(ride => { %>
+                <div class="ride-card">
+                    <img src="<%= ride.image %>" alt="<%= ride.name %>">
+                    <div class="ride-info">
+                        <h2 class="ride-name"><%= ride.name %></h2>
+                        <p class="ride-category"><%= ride.category %></p>
+                        <p class="ride-price">$<%= ride.price.toFixed(2) %></p>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
